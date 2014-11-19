@@ -2,9 +2,9 @@
 #			-Created by Felipe Novais & Estela Mello-
 #		-Dedicated to Renato Cantao great guy and teacher-
 #
-#		How to: call the fourier.py with summation n-index
+#		How to: call the square.py with summation n-index
 #		example:
-#				$python fourier.py 5
+#				$python square.py 5
 #				will result the first 5 terms
 ####################################################################
 
@@ -25,7 +25,8 @@ y3 = [0, 1, 0, 1, 0]
 #DEFINING THE PLOT AREA
 fig = plt.figure()
 ax  = fig.add_subplot(111)
-x_label = [r"$-\frac{\pi}{2}$", r"$-\pi$", r"$0$", r"$\pi$",   r"$+\frac{\pi}{2}$"]
+#Changing X axis labels to radians
+x_label = [r"$-{2\pi}$", r"$-\pi$", r"$0$", r"$\pi$",   r"${2\pi}$"]
 ax.set_xticks([-2*pi, -pi, 0, pi, 2*pi])
 ax.set_xticklabels(x_label, fontsize=20)
 
@@ -41,7 +42,7 @@ for i in range(1, j):
 term = str(j-1)
 
 #PLOTING
-ax.plot(x, y, label=r'$S_{'+term+'}(x)$') #Fourier terms
+ax.plot(x, y, label=r'$S_{'+term+'}(x)$', zorder=999) #Fourier series
 ax.step([-2 * pi, -pi],[1, 1],'r', [-pi, 0],[0, 0],'r', [0, pi],[1, 1],'r', [pi, 2 * pi],[0, 0], 'r') #f(x) "square wave"
 ax.step(0,0,'r',label=r'$f(x)$') #f(X)	label
 ax.scatter(x2, y2, s = 30, c = 'r', edgecolors ='r') #f(x) left boundaries
@@ -49,6 +50,8 @@ ax.scatter(x2, y3, s = 30, c = 'w', edgecolors ='r') #f(x) right boundaries
 ax.legend(bbox_to_anchor=(0, 1.02, 1, .102), loc=3,ncol=2, mode="expand", borderaxespad=0.)
 
 #SHOWING
+plt.axes().set_ylim([-0.4, 1.4])
+plt.axes().set_aspect(pi, 'box')
 plt.grid()
-plt.savefig('fourier'+term+'.png')  #remove the first # of the line if u want to save plot to png image
+plt.savefig('square'+term+'.png')  #comment this line if dont want to save plot to png image
 plt.show()
